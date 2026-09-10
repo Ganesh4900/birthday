@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>🎂 A Special Birthday Surprise</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3, #8e7dff);
+    color: white;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+.screen {
+    min-height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+}
+
+.screen.active {
+    display: flex;
+}
+
+.card {
+    width: 100%;
+    max-width: 650px;
+    padding: 35px 25px;
+    background: rgba(255,255,255,0.16);
+    backdrop-filter: blur(12px);
+    border-radius: 30px;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.25);
+}
+
+h1 {
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 19px;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.big {
+    font-size: 90px;
+    margin: 20px;
+}
+
+button {
+    border: none;
+    border-radius: 30px;
+    padding: 14px 25px;
+    margin: 8px;
+    font-size: 17px;
+    font-weight: bold;
+    color: #ff4f81;
+    background: white;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.08);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+/* Balloons */
+
+.balloon {
+    position: fixed;
+    width: 55px;
+    height: 70px;
+    border-radius: 50%;
+    bottom: -100px;
+    animation: balloonFloat 8s linear infinite;
+    z-index: -1;
+}
+
+.b1 {
+    left: 5%;
+    background: #ff3b6b;
+}
+
+.b2 {
+    left: 25%;
+    background: #ffd166;
+    animation-delay: 2s;
+}
+
+.b3 {
+    left: 60%;
+    background: #06d6a0;
+    animation-delay: 4s;
+}
+
+.b4 {
+    left: 85%;
+    background: #4cc9f0;
+    animation-delay: 1s;
+}
+
+@keyframes balloonFloat {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-120vh);
+    }
+}
+
+/* Gift */
+
+.gift {
+    font-size: 120px;
+    cursor: pointer;
+    animation: giftShake 1.5s infinite;
+}
+
+@keyframes giftShake {
+    0%,100% {
+        transform: rotate(0);
+    }
+
+    25% {
+        transform: rotate(-8deg);
+    }
+
+    75% {
+        transform: rotate(8deg);
+    }
+}
+
+/* Cake */
+
+.cake {
+    font-size: 100px;
+    cursor: pointer;
+}
+
+.candleText {
+    margin-top: 15px;
+    font-size: 17px;
+}
+
+/* Photos */
+
+.photos {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.photo {
+    width: 130px;
+    height: 160px;
+    background: rgba(255,255,255,0.25);
+    border: 3px solid white;
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+}
+
+.photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Letter */
+
+.letter {
+    background: #fff8f0;
+    color: #5b4054;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: left;
+    line-height: 1.8;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* Password */
+
+input {
+    padding: 14px;
+    width: 80%;
+    max-width: 300px;
+    border: none;
+    border-radius: 25px;
+    text-align: center;
+    font-size: 17px;
+    margin: 15px;
+    outline: none;
+}
+
+#error {
+    color: #ffe0e0;
+    display: none;
+}
+
+/* Final */
+
+.final {
+    animation: finalAppear 1.5s ease;
+}
+
+@keyframes finalAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.finalHeart {
+    font-size: 90px;
+    animation: heartBeat 1s infinite;
+}
+
+@keyframes heartBeat {
+    0%,100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+/* Mobile */
+
+@media(max-width:600px) {
+
+    h1 {
+        font-size: 35px;
+    }
+
+    h2 {
+        font-size: 27px;
+    }
+
+    p {
+        font-size: 17px;
+    }
+
+    .big {
+        font-size: 70px;
+    }
+
+    .gift {
+        font-size: 90px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background balloons -->
+
+<div class="balloon b1"></div>
+<div class="balloon b2"></div>
+<div class="balloon b3"></div>
+<div class="balloon b4"></div>
+
+
+<!-- ========================= -->
+<!-- SCREEN 1 -->
+<!-- ========================= -->
+
+<section class="screen active" id="screen1">
+
+<div class="card">
+
+    <div class="big">🎉</div>
+
+    <h1>Hey You! 👀</h1>
+
+    <p>
+        Someone has prepared a very special surprise for you...
+        🎁
+    </p>
+
+    <p>
+        But you have to unlock it step by step. 😌
+    </p>
+
+    <button onclick="nextScreen(2)">
+        ✨ Start the Surprise
+    </button>
+
+</div>
+
+</section>
+
+
+<!-- ========================= -->
+<!-- SCREEN 2 -->
+<!-- ========================= -->
+
+<section class="screen" id="screen2">
+
+<div class="card">
+
+    <div class="gift" onclick="openGift()">
+        🎁
+    </div>
+
+    <h2>There is something inside...</h2>
+
+    <p>
+        Tap the gift to open it! 👆
+    </p>
+
+    <div id="giftMessage" style="display:none">
+
+        <h2>🎊 SURPRISE! 🎊</h2>
+
+        <p>
+            But wait... this is only the beginning. 😏
+        </p>
+
+        <button onclick="nextScreen(3)">
+            💌 Continue
+        </button>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ========================= -->
+<!-- SCREEN 3 -->
+<!-- ========================= -->
+
+<section class="screen" id="screen3">
+
+<div class="card">
+
+    <div class="big">💌</div>
+
+    <h2>A Little Letter For You</h2>
+
+    <div class="letter">
+
+        <p>
+            Dear <b>Basuu</b>,
+        </p>
+
+        <p>
+            Today is your special day, and I just wanted
+            to remind you how wonderful you are.
+        </p>
+
+        <p>
+            May your life always be filled with happiness,
+            laughter, beautiful memories and people who
+            genuinely care about you. ❤️
+        </p>
+
+        <p>
+            Keep smiling, keep shining and never stop
+            being the amazing person you are. ✨
+        </p>
+
+        <p>
+            Happy Birthday! 🎂
+        </p>
+
+    </div>
+
+    <button onclick="nextScreen(4)">
+        📸 There's More...
+    </button>
+
+</div>
+
+</section>
+
+
+<!-- ========================= -->
+<!-- SCREEN 4 -->
+<!-- ========================= -->
+
+<section class="screen" id="screen4">
+
+<div class="card">
+
+    <h1>📸 Memories</h1>
+
+    <p>
+        Some moments are too special to forget. ❤️
+    </p>
+
+    <div class="photos">
+
+        <!-- Replace the emojis with your photos if you want -->
+
+        <div class="photo">📷</div>
+
+        <div class="photo">❤️</div>
+
+        <div class="photo">🥰</div>
+
+    </div>
+
+    <p>
+        Every memory with you is worth keeping. ✨
+    </p>
+
+    <button onclick="nextScreen(5)">
+        🎂 One More Surprise
+    </button>
+
+</div>
+
+</section>
+
+
+<!-- ========================= -->
+<!-- SCREEN 5 -->
+<!-- ========================= -->
+
+<section class="screen" id="screen5">
+
+<div class="card">
+
+    <h1>🎂 Make A Wish!</h1>
+
+    <div class="cake" onclick="blowCandles()">
+        🕯️🎂🕯️
+    </div>
+
+    <p id="candleMessage">
+        Tap the cake to blow out the candles! 🕯️
+    </p>
+
+    <div id="afterCake" style="display:none">
+
+        <h2>✨ Wish Made! ✨</h2>
+
+        <p>
+            I hope your wish comes true. ❤️
+        </p>
+
+        <button onclick="nextScreen(6)">
+            🔐 Unlock Final Surprise
+        </button>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ========================= -->
+<!-- SCREEN 6 -->
+<!-- ========================= -->
+
+<section class="screen" id="screen6">
+
+<div class="card">
+
+    <div class="big">🔐</div>
+
+    <h2>Secret Surprise</h2>
+
+    <p>
+        There is one final surprise waiting for you.
+    </p>
+
+    <p>
+        Enter the secret password.
+    </p>
+
+    <input
+        type="text"
+        id="password"
+        placeholder="Enter password"
+    >
+
+    <br>
+
+    <button onclick="checkPassword()">
+        🔓 Unlock
+    </button>
+
+    <p id="error">
+        ❌ Wrong password... Try again!
+    </p>
+
+</div>
+
+</section>
+
+
+<!-- ========================= -->
+<!-- SCREEN 7 -->
+<!-- ========================= -->
+
+<section class="screen" id="screen7">
+
+<div class="card final">
+
+    <div class="finalHeart">❤️</div>
+
+    <h1>HAPPY BIRTHDAY!</h1>
+
+    <h2>🎉 YOUR NAME 🎉</h2>
+
+    <p>
+        Today isn't just another day...
+        It's the day someone truly special came into
+        this world. 🌎❤️
+    </p>
+
+    <p>
+        I hope this new year of your life brings you
+        countless reasons to smile, wonderful adventures,
+        unforgettable memories and lots of happiness.
+    </p>
+
+    <h2>
+        🎂🥳✨💖✨🥳🎂
+    </h2>
+
+    <p>
+        You deserve the absolute best.
+    </p>
+
+    <button onclick="celebrate()">
+        🎊 Celebrate!
+    </button>
+
+</div>
+
+</section>
+
+
+<script>
+
+/* =========================
+   CHANGE THESE
+========================= */
+
+/* Put birthday person's name here */
+
+const birthdayName = "YOUR NAME";
+
+/* Put your secret password here */
+
+const secretPassword = "birthday";
+
+
+/* =========================
+   NAME AUTOMATICALLY
+========================= */
+
+document.addEventListener("DOMContentLoaded", function() {
+
+    document.querySelectorAll("b").forEach(function(element) {
+
+        if(element.innerText === "YOUR NAME") {
+            element.innerText = birthdayName;
+        }
+
+    });
+
+    document.querySelectorAll("h2").forEach(function(element) {
+
+        if(element.innerText === "🎉 YOUR NAME 🎉") {
+            element.innerText = "🎉 " + birthdayName + " 🎉";
+        }
+
+    });
+
+});
+
+
+/* =========================
+   SCREEN CONTROL
+========================= */
+
+function nextScreen(number) {
+
+    document.querySelectorAll(".screen").forEach(function(screen) {
+
+        screen.classList.remove("active");
+
+    });
+
+    document.getElementById("screen" + number)
+        .classList.add("active");
+
+    window.scrollTo(0,0);
+}
+
+
+/* =========================
+   OPEN GIFT
+========================= */
+
+function openGift() {
+
+    document.querySelector(".gift").style.animation = "none";
+
+    document.getElementById("giftMessage").style.display = "block";
+
+    createConfetti(30);
+}
+
+
+/* =========================
+   BLOW CANDLES
+========================= */
+
+function blowCandles() {
+
+    document.querySelector(".cake").innerHTML = "🎂";
+
+    document.getElementById("candleMessage").innerHTML =
+        "🎉 The candles are gone! Make your wish! ✨";
+
+    document.getElementById("afterCake").style.display = "block";
+
+    createConfetti(40);
+}
+
+
+/* =========================
+   PASSWORD
+========================= */
+
+function checkPassword() {
+
+    const entered =
+        document.getElementById("password").value;
+
+    if(entered.toLowerCase() === secretPassword.toLowerCase()) {
+
+        createConfetti(80);
+
+        setTimeout(function() {
+
+            nextScreen(7);
+
+        }, 700);
+
+    } else {
+
+        document.getElementById("error").style.display = "block";
+
+    }
+
+}
+
+
+/* =========================
+   CONFETTI
+========================= */
+
+function createConfetti(amount) {
+
+    const emojis = ["🎉","🎊","✨","💖","❤️","🥳","⭐"];
+
+    for(let i=0; i<amount; i++) {
+
+        const confetti = document.createElement("div");
+
+        confetti.innerHTML =
+            emojis[Math.floor(Math.random()*emojis.length)];
+
+        confetti.style.position = "fixed";
+        confetti.style.left =
+            Math.random()*100 + "vw";
+
+        confetti.style.top = "-30px";
+
+        confetti.style.fontSize =
+            (Math.random()*20 + 15) + "px";
+
+        confetti.style.zIndex = "9999";
+
+        confetti.style.transition =
+            "transform 3s linear, opacity 3s";
+
+        document.body.appendChild(confetti);
+
+        setTimeout(function() {
+
+            confetti.style.transform =
+                "translateY(110vh) rotate(720deg)";
+
+            confetti.style.opacity = "0";
+
+        },50);
+
+        setTimeout(function() {
+
+            confetti.remove();
+
+        },3500);
+
+    }
+
+}
+
+
+/* =========================
+   FINAL CELEBRATION
+========================= */
+
+function celebrate() {
+
+    createConfetti(200);
+
+    alert(
+        "🎂 HAPPY BIRTHDAY " +
+        birthdayName +
+        "! 🎉❤️"
+    );
+
+}
+
+</script>
+
+</body>
+</html>
